@@ -8,7 +8,7 @@ fetch("http://localhost:3000/toys")
 
 function renderToys(toys) {
 
-    
+  console.log(toys)
 
 let toyCollection = document.querySelector('#toy-collection')
 
@@ -19,7 +19,7 @@ let toyCollection = document.querySelector('#toy-collection')
   <h2>${toy.name}</h2>
   <img src="${toy.image}" class="toy-avatar" />
   <p>${toy.likes}</p>
-  <button class="like-btn" id="[toy_id]"> Like <3 </button>
+  <button class="like-btn" id="${toy.id}"> Like <3 </button>
   </div>`
   
 
@@ -32,16 +32,38 @@ let toyCollection = document.querySelector('#toy-collection')
   for (let btn of likeBtns) {
 
     btn.addEventListener('click', (e) => {
-      console.log(e)
+
+     let newLike = e.target.previousElementSibling.innerText ++
+
+      let newArray = {
+        name: e.target.name,
+        image: e.target.image,
+        likes: `${newLike}`
+      }
+
+      let id = btn.id
+
+      console.log(id)
+
+      fetch(`http://localhost:3000/toys/${id}`, {
+        method: 'PACTH',
+        headers: {
+          'Content-Type': 'application/json'       
+        },
+        body: JSON.stringify(newArray)
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
       
-      //  
+      
+      
       
     })
   }
 
 }
 
-//increate toy likes:
+//increase toy likes:
 // add event listener to like button 
 
 // let submitEvent = document.querySelector('.add-toy-form').addEventListener
