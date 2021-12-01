@@ -8,7 +8,9 @@ fetch("http://localhost:3000/toys")
 
 function renderToys(toys) {
 
-  let toyCollection = document.querySelector('#toy-collection')
+    
+
+let toyCollection = document.querySelector('#toy-collection')
 
   toys.forEach(toy => {
 
@@ -19,15 +21,28 @@ function renderToys(toys) {
   <p>${toy.likes}</p>
   <button class="like-btn" id="[toy_id]"> Like <3 </button>
   </div>`
+  
 
   })
 
-  let likeBtn = document.querySelector(".like-btn")
-  likeBtn.addEventListener('click', (e) => {
-    console.log(e)
-  })
+  let likeBtns = document.getElementsByClassName("like-btn")
+  
+  
+
+  for (let btn of likeBtns) {
+
+    btn.addEventListener('click', (e) => {
+      console.log(e)
+      
+      //  
+      
+    })
+  }
 
 }
+
+//increate toy likes:
+// add event listener to like button 
 
 // let submitEvent = document.querySelector('.add-toy-form').addEventListener
 
